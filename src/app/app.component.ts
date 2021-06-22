@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { CrudService } from './app.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'envtestfrontend';
+  envVar:String = "";
+  constructor(private service:CrudService)
+  {
+
+  }
+
+  ngOnInit()
+  {
+    this.service.getData().subscribe(data =>{
+      this.envVar = moment().format('DD/MM/YYYY hh:mm')+ " " +data;
+    });
+  }
 }
